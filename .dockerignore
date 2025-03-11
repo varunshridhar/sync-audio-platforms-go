@@ -1,0 +1,39 @@
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Build artifacts
+/bin
+/build
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.out
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Dependencies
+/vendor/
+
+# Environment and config files
+.env
+*.env
+config.yml
+
+# OS generated files
+.DS_Store
+*.log
+
+# Test files
+*_test.go
+/test 

@@ -1,0 +1,27 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Output of the go build
+/main
+*.out
+
+# Build directories
+/build/
+/bin/
+
+# Dependency directories
+/vendor/
+
+# OS generated files
+.DS_Store
+
+# IDE or editor configurations
+.idea/
+.vscode/
+
+# Environment variable files
+config.yml
