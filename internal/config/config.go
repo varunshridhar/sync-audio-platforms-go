@@ -14,7 +14,15 @@ var (
 	MySQL MySQLConfig
 	// Redis holds the Redis connection configuration.
 	Redis RedisConfig
+	// Spotify holds the Spotify authentication configuration.
+	Spotify SpotifyConfig
 )
+
+type SpotifyConfig struct {
+	ClientID     string
+	ClientSecret string
+	RedirectURI  string
+}
 
 // LoadConfig initializes the configuration by reading from config.yml (if it exists)
 // and then overrides with environment variables.
@@ -52,6 +60,11 @@ func LoadConfig() {
 	viper.SetDefault("REDIS_PASSWORD", "")
 	viper.SetDefault("REDIS_DB", 0)
 
+	// Set default values for SpotifyConfig.
+	viper.SetDefault("SPOTIFY_CLIENT_ID", "")
+	viper.SetDefault("SPOTIFY_CLIENT_SECRET", "")
+	viper.SetDefault("SPOTIFY_REDIRECT_URI", "")
+
 	// Initialize the global App config.
 	App = AppConfig{
 		Port:     viper.GetString("APP_PORT"),
@@ -75,7 +88,15 @@ func LoadConfig() {
 		DB:       viper.GetInt("REDIS_DB"),
 	}
 
+	// Initialize the global Spotify config.
+	Spotify = SpotifyConfig{
+		ClientID:     viper.GetString("SPOTIFY_CLIENT_ID"),
+		ClientSecret: viper.GetString("SPOTIFY_CLIENT_SECRET"),
+		RedirectURI:  viper.GetString("SPOTIFY_REDIRECT_URI"),
+	}
+
 	log.Printf("App Config: %+v", App)
 	log.Printf("MySQL Config: %+v", MySQL)
 	log.Printf("Redis Config: %+v", Redis)
+	log.Printf("Spotify Config: %+v", Spotify)
 }
