@@ -1,0 +1,18 @@
+# Never send local secrets to Cloud Build/Deploy context.
+.env
+.env.*
+**/.env
+**/.env.*
+env.docker.example
+
+# Local artifacts
+node_modules/
+.next/
+dist/
+coverage/
+bin/
+tmp/
+
+# VCS metadata
+.git/
+

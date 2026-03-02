@@ -1,0 +1,83 @@
+openapi: 3.0.3
+info:
+  title: Sync Audio Platforms API
+  version: 1.0.0
+  description: Backend API for auth, provider connections, and sync jobs.
+servers:
+  - url: http://localhost:8080
+paths:
+  /v1/health:
+    get:
+      summary: Health check
+      responses:
+        "200":
+          description: Service is healthy
+  /v1/auth/login:
+    post:
+      summary: Login / request access
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email:
+                  type: string
+                captchaToken:
+                  type: string
+                accessCode:
+                  type: string
+      responses:
+        "200":
+          description: User session created
+  /v1/me:
+    get:
+      summary: Current authenticated user
+      responses:
+        "200":
+          description: User profile
+        "401":
+          description: Unauthorized
+  /v1/providers:
+    get:
+      summary: List connected providers
+      responses:
+        "200":
+          description: Provider metadata list
+  /v1/providers/connect:
+    post:
+      summary: Connect provider credentials
+      responses:
+        "201":
+          description: Provider connected
+  /v1/sync/jobs:
+    get:
+      summary: List sync jobs
+      responses:
+        "200":
+          description: Sync jobs list
+    post:
+      summary: Create sync job
+      responses:
+        "201":
+          description: Sync job created
+  /v1/admin/users/pending:
+    get:
+      summary: List pending users (admin)
+      responses:
+        "200":
+          description: Pending users list
+  /v1/admin/users/{userID}/approve:
+    post:
+      summary: Approve user (admin)
+      parameters:
+        - in: path
+          name: userID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Approved user
